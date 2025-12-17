@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💬 ChinaForNoobs Forum - Ask Questions Anonymously!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B983FGTJJH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B983FGTJJH');
+    </script>
+</head>
+<body>
+    <!-- Classic 90s Header -->
+    <div class="header-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="3">
+            ★★★ ChinaForNoobs Community Forum ★★★ Ask Questions Anonymously! ★★★ Help Fellow Founders! ★★★ Share Your Shenzhen Knowledge! ★★★
+        </marquee>
+    </div>
+
+    <table class="main-layout" cellpadding="0" cellspacing="0">
+        <tr>
+            <!-- Left Sidebar -->
+            <td class="sidebar-left">
+                <div class="sidebar-box">
+                    <div class="sidebar-title">📌 NAVIGATION</div>
+                    <ul class="nav-list">
+                        <li><a href="index.html">🏠 Home</a></li>
+                        <li><a href="index.html#intro">🌆 Why Shenzhen?</a></li>
+                        <li><a href="index.html#hardware">🔧 Hardware</a></li>
+                        <li><a href="index.html#communities">👥 Communities</a></li>
+                        <li><a href="index.html#workspaces">💼 Workspaces</a></li>
+                        <li><a href="index.html#cafes">☕ Cafes</a></li>
+                        <li><a href="index.html#housing">🏠 Housing</a></li>
+                        <li><a href="index.html#todos">✅ To-Dos</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="sidebar-title">📜 FORUM RULES</div>
+                    <ul class="nav-list" style="font-size: 11px;">
+                        <li>✅ Be helpful & kind</li>
+                        <li>✅ Share real experiences</li>
+                        <li>✅ Ask specific questions</li>
+                        <li>❌ No spam or promotions</li>
+                        <li>❌ No offensive content</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-box gif-box">
+                    <img src="https://web.archive.org/web/20091027101804/http://www.geocities.com/ejintai/question.gif" alt="Question" width="60">
+                    <p class="small-text">Got questions?<br>Ask away!</p>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="sidebar-title">🔥 HOT TOPICS</div>
+                    <ul class="nav-list" style="font-size: 11px;">
+                        <li>💳 Alipay setup</li>
+                        <li>📱 WeChat verification</li>
+                        <li>🏪 Huaqiangbei tips</li>
+                        <li>🏠 Housing options</li>
+                        <li>🍜 Best food spots</li>
+                    </ul>
+                </div>
+            </td>
+
+            <!-- Main Content -->
+            <td class="main-content">
+                <!-- Forum Header -->
+                <div class="forum-header">
+                    <h1>💬 Community Forum 💬</h1>
+                    <p>Ask questions anonymously • Help fellow founders • Share your Shenzhen wisdom!</p>
+                </div>
+
+                <a href="index.html" class="back-link">⬅️ Back to Main Guide</a>
+
+                <!-- Post Form -->
+                <div class="post-form">
+                    <h2>📝 ASK A QUESTION</h2>
+                    <form id="new-post-form">
+                        <div class="form-group">
+                            <label for="post-category">Category: *</label>
+                            <select id="post-category" required>
+                                <option value="general">💬 General Questions</option>
+                                <option value="hardware">🔧 Hardware & Manufacturing</option>
+                                <option value="housing">🏠 Housing & Living</option>
+                                <option value="communities">👥 Communities & Networking</option>
+                                <option value="workspaces">💼 Workspaces</option>
+                                <option value="cafes">☕ Cafes & Hidden Spots</option>
+                                <option value="todos">✅ Visa & Preparation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-title">Question Title: *</label>
+                            <input type="text" id="post-title" required placeholder="e.g., Best area to stay near Huaqiangbei?">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-content">Your Question (Details): *</label>
+                            <textarea id="post-content" required placeholder="Give us more details so we can help you better..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-author">Your Name (optional - leave blank for Anonymous):</label>
+                            <input type="text" id="post-author" placeholder="Anonymous">
+                        </div>
+                        <button type="submit" class="submit-btn">🚀 Post My Question!</button>
+                    </form>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="category-filter">
+                    <label for="category-filter">🔍 Filter by Category:</label>
+                    <select id="category-filter" onchange="filterPosts()">
+                        <option value="all">📋 All Categories</option>
+                        <option value="general">💬 General Questions</option>
+                        <option value="hardware">🔧 Hardware & Manufacturing</option>
+                        <option value="housing">🏠 Housing & Living</option>
+                        <option value="communities">👥 Communities & Networking</option>
+                        <option value="workspaces">💼 Workspaces</option>
+                        <option value="cafes">☕ Cafes & Hidden Spots</option>
+                        <option value="todos">✅ Visa & Preparation</option>
+                    </select>
+                </div>
+
+                <!-- Posts Container -->
+                <div class="posts-container">
+                    <div class="posts-header">
+                        📋 COMMUNITY QUESTIONS & ANSWERS
+                    </div>
+                    <div id="posts-list">
+                        <!-- Posts will be loaded here by JavaScript -->
+                        <div class="no-posts">
+                            <p>Loading posts...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer-section">
+                    <hr class="rainbow-hr">
+                    <table class="footer-table">
+                        <tr>
+                            <td>
+                                <p>💬 Join our community of founders helping founders!</p>
+                                <p class="small-text">All questions are anonymous unless you choose to share your name.</p>
+                                <hr style="margin: 15px 0; border: 1px dashed #999;">
+                                <p><a href="index.html" class="big-button">🏠 Back to Main Guide</a></p>
+                                <p class="small-text">© 2025 ChinaForNoobs.com | Community Forum</p>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <div class="guestbook-link">
+                        <img src="https://web.archive.org/web/20091027065852/http://hk.geocities.com/vlounge_hk/email2.gif" alt="Email" width="40">
+                        <a href="mailto:hello@chinafornoobs.com">Email the admins</a>
+                    </div>
+                </div>
+            </td>
+
+            <!-- Right Sidebar -->
+            <td class="sidebar-right">
+                <div class="sidebar-box">
+                    <div class="sidebar-title">📊 FORUM STATS</div>
+                    <ul class="stats-list">
+                        <li>📝 Posts: <span id="post-count">5</span></li>
+                        <li>💬 Replies: <span id="reply-count">6</span></li>
+                        <li>👤 Anonymous: 100%</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="sidebar-title">⏰ SHENZHEN TIME</div>
+                    <div id="shenzhen-clock" class="clock">--:--:--</div>
+                    <p class="small-text">What time is it<br>in the SZ?</p>
+                </div>
+
+                <div class="sidebar-box gif-box">
+                    <img src="https://web.archive.org/web/20090830081744/http://www.geocities.com/SouthBeach/Marina/4942/under.gif" alt="Under Construction" width="80">
+                    <p class="blink small-text">Always improving!</p>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="sidebar-title">💡 DID YOU KNOW?</div>
+                    <p class="small-text" style="text-align: left; padding: 5px;">
+                        Shenzhen went from a fishing village to a city of 17+ million in just 40 years! 🐟➡️🏙️
+                    </p>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="sidebar-title">🔗 QUICK LINKS</div>
+                    <ul class="nav-list" style="font-size: 11px;">
+                        <li><a href="https://www.seeedstudio.com" target="_blank">Seeed Studio</a></li>
+                        <li><a href="https://www.taobao.com" target="_blank">Taobao</a></li>
+                        <li><a href="https://jlcpcb.com" target="_blank">JLCPCB</a></li>
+                        <li><a href="https://www.pcbway.com" target="_blank">PCBWay</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="sidebar-title">🎲 RANDOM TIP</div>
+                    <p class="small-text" id="random-tip" style="text-align: left; padding: 5px;">
+                        Learn to say "多少钱?" (duōshǎo qián) - "How much?" - it's your most useful phrase at HQB!
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Bottom Banner -->
+    <div class="bottom-banner">
+        <marquee behavior="alternate" direction="left" scrollamount="2">
+            🤝 Help a fellow founder today! 🤝 Share your Shenzhen experience! 🤝 We're all in this together! 🤝
+        </marquee>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Random tips for the sidebar
+        const tips = [
+            "Learn to say \"多少钱?\" (duōshǎo qián) - \"How much?\" - it's essential at HQB!",
+            "Always carry a power bank - you'll need WeChat & Alipay everywhere!",
+            "Download Didi (Chinese Uber) before you arrive!",
+            "Metro Line 1 takes you straight to Huaqiangbei!",
+            "Bring business cards - they're still a big deal in China!",
+            "Register at the police station within 24 hours of arrival!",
+            "Manner Coffee is cheap, good, and everywhere!",
+            "OCT Loft is perfect for creative inspiration & coffee!",
+            "Most factory MOQs are negotiable - always ask!",
+            "Join hardware founder WeChat groups for real-time advice!"
+        ];
+        
+        function showRandomTip() {
+            const tipElement = document.getElementById('random-tip');
+            if (tipElement) {
+                tipElement.textContent = tips[Math.floor(Math.random() * tips.length)];
+            }
+        }
+        
+        // Change tip every 30 seconds
+        showRandomTip();
+        setInterval(showRandomTip, 30000);
+
+        // Update forum stats
+        function updateForumStats() {
+            const posts = getPosts();
+            const postCountEl = document.getElementById('post-count');
+            const replyCountEl = document.getElementById('reply-count');
+            
+            if (postCountEl) {
+                postCountEl.textContent = posts.length;
+            }
+            if (replyCountEl) {
+                const totalReplies = posts.reduce((sum, post) => sum + (post.replies?.length || 0), 0);
+                replyCountEl.textContent = totalReplies;
+            }
+        }
+        
+        // Update stats on load
+        setTimeout(updateForumStats, 100);
+    </script>
+</body>
+</html>

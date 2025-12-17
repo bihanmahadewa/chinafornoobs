@@ -1,0 +1,747 @@
+/* ==========================================
+   ChinaForNoobs.com - Retro 90s/2000s Styles
+   Mostly B&W with accent colors
+   ========================================== */
+
+/* Import some classic-ish fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=VT323&display=swap');
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    background-color: #808080;
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #333333;
+}
+
+a:hover {
+    color: #cc0000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Classic Header Banner */
+.header-banner {
+    background-color: #000000;
+    padding: 8px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 3px solid #333333;
+}
+
+.header-banner marquee {
+    color: #ffcc00;
+}
+
+/* Main Table Layout - Very 90s! */
+.main-layout {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 4px outset #c0c0c0;
+    box-shadow: 5px 5px 0 #000000;
+}
+
+/* Sidebars */
+.sidebar-left,
+.sidebar-right {
+    width: 180px;
+    background-color: #e0e0e0;
+    vertical-align: top;
+    padding: 10px;
+    border-right: 3px groove #808080;
+}
+
+.sidebar-right {
+    border-right: none;
+    border-left: 3px groove #808080;
+    background-color: #e0e0e0;
+}
+
+.sidebar-box {
+    background-color: #ffffff;
+    border: 3px outset #c0c0c0;
+    margin-bottom: 15px;
+    padding: 8px;
+    text-align: center;
+}
+
+.sidebar-title {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 5px;
+    margin: -8px -8px 8px -8px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #333333;
+}
+
+.nav-list {
+    list-style: none;
+    text-align: left;
+    font-size: 13px;
+}
+
+.nav-list li {
+    padding: 4px 0;
+    border-bottom: 1px dashed #cccccc;
+}
+
+.nav-list li:last-child {
+    border-bottom: none;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.nav-list a:hover {
+    color: #cc0000;
+    background-color: #f0f0f0;
+}
+
+.gif-box {
+    background-color: #f5f5f5;
+}
+
+.gif-box img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Main Content Area */
+.main-content {
+    background-color: #ffffff;
+    vertical-align: top;
+    padding: 15px;
+}
+
+/* Logo Area */
+.logo-area {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 4px double #000000;
+    margin-bottom: 20px;
+}
+
+.rainbow-text {
+    font-family: 'VT323', 'Comic Neue', monospace;
+    font-size: 48px;
+    color: #000000;
+    text-shadow: 2px 2px 0 #cccccc;
+}
+
+.tagline {
+    font-family: 'Comic Neue', cursive;
+    font-size: 24px;
+    color: #cc0000;
+    margin: 10px 0;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #333333;
+    font-style: italic;
+}
+
+.rainbow-hr {
+    height: 3px;
+    background-color: #000000;
+    border: none;
+    margin: 15px 0;
+}
+
+/* Content Sections */
+.content-section {
+    margin-bottom: 25px;
+    border: 3px outset #c0c0c0;
+    background-color: #f5f5f5;
+}
+
+.section-header {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-bottom: 3px groove #808080;
+}
+
+.section-header img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.section-content {
+    padding: 15px;
+    background-color: #ffffff;
+}
+
+.inner-table {
+    width: 100%;
+}
+
+.text-cell {
+    padding: 10px;
+}
+
+/* Info Boxes */
+.info-box {
+    padding: 15px;
+    margin: 15px 0;
+    border: 3px inset #c0c0c0;
+}
+
+.info-box.green {
+    background-color: #e8f5e8;
+    border-color: #666666;
+}
+
+.info-box.blue {
+    background-color: #e8f0f5;
+    border-color: #666666;
+}
+
+.info-box.yellow {
+    background-color: #f5f5e8;
+    border-color: #666666;
+}
+
+.info-box.pink {
+    background-color: #f5e8f0;
+    border-color: #666666;
+}
+
+.info-box ul {
+    margin-left: 20px;
+}
+
+.info-box li {
+    margin: 5px 0;
+}
+
+.highlight-box {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border: 3px dashed #333333;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.tip-box {
+    background-color: #f5f5f5;
+    border-left: 5px solid #000000;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.warning-box {
+    background-color: #f5f5f5;
+    border: 3px solid #cc0000;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Data Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    border: 2px solid #000000;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    border: 1px solid #000000;
+    text-align: left;
+}
+
+.table-header {
+    background-color: #000000;
+}
+
+.table-header th {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.alt-row {
+    background-color: #f0f0f0;
+}
+
+/* Checklist */
+.checklist {
+    background-color: #fffff0;
+    padding: 15px;
+    border: 2px dashed #999999;
+}
+
+.checklist-item {
+    padding: 8px;
+    border-bottom: 1px dotted #cccccc;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+.checklist-item label {
+    flex: 1;
+}
+
+/* Buttons */
+.big-button {
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: 4px outset #333333;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.big-button:hover {
+    background-color: #333333;
+    border-style: inset;
+}
+
+.big-button:active {
+    border-style: inset;
+}
+
+/* Blink Animation - Very 90s! */
+.blink {
+    animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* Footer */
+.footer-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footer-table {
+    width: 100%;
+    background-color: #e0e0e0;
+    border: 3px outset #c0c0c0;
+}
+
+.footer-table td {
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-table img {
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+.guestbook-link {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.guestbook-link img {
+    vertical-align: middle;
+}
+
+/* Clock Widget */
+.clock {
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    color: #00ff00;
+    background-color: #000000;
+    padding: 10px;
+    border: 2px inset #333333;
+}
+
+/* Weather Widget */
+.weather-widget {
+    font-size: 12px;
+}
+
+.big-temp {
+    font-size: 28px;
+    color: #000000;
+}
+
+/* Exchange Rate */
+.exchange-rate {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Stats */
+.stats-list {
+    list-style: none;
+    text-align: left;
+    font-size: 12px;
+}
+
+.stats-list li {
+    padding: 3px 0;
+}
+
+/* Text Utilities */
+.center-text {
+    text-align: center;
+}
+
+.small-text {
+    font-size: 11px;
+    color: #666666;
+}
+
+/* Bottom Banner */
+.bottom-banner {
+    background-color: #000000;
+    padding: 10px;
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 18px;
+    border-top: 3px solid #333333;
+}
+
+/* ==========================================
+   Community / Forum Page Styles
+   ========================================== */
+
+.forum-header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border: 4px outset #333333;
+    margin-bottom: 20px;
+}
+
+.forum-header h1 {
+    font-size: 36px;
+}
+
+.forum-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.post-form {
+    background-color: #f5f5f5;
+    border: 3px outset #c0c0c0;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.post-form h2 {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 10px;
+    margin: -20px -20px 15px -20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000080;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-family: 'Comic Neue', cursive;
+    font-size: 14px;
+    border: 2px inset #c0c0c0;
+    background-color: #ffffff;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 30px;
+    border: 3px outset #333333;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+}
+
+.submit-btn:hover {
+    background-color: #333333;
+}
+
+.submit-btn:active {
+    border-style: inset;
+}
+
+/* Forum Posts */
+.posts-container {
+    background-color: #ffffff;
+    border: 3px outset #c0c0c0;
+    padding: 15px;
+}
+
+.posts-header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 15px;
+    margin: -15px -15px 15px -15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post {
+    border: 2px solid #cccccc;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.post-header {
+    background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+    padding: 8px 12px;
+    border-bottom: 1px solid #999999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-category {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.post-category.housing { background-color: #555555; }
+.post-category.hardware { background-color: #333333; }
+.post-category.communities { background-color: #444444; }
+.post-category.general { background-color: #666666; }
+
+.post-date {
+    font-size: 11px;
+    color: #666666;
+}
+
+.post-title {
+    background-color: #f5f5f5;
+    padding: 10px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px dashed #999999;
+}
+
+.post-content {
+    padding: 15px;
+    line-height: 1.6;
+}
+
+.post-footer {
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-top: 1px solid #cccccc;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.post-author {
+    color: #333333;
+    font-weight: bold;
+}
+
+.reply-btn {
+    background-color: #666666;
+    color: #ffffff;
+    padding: 5px 15px;
+    border: 2px outset #888888;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+}
+
+.reply-btn:hover {
+    background-color: #444444;
+}
+
+/* Replies */
+.replies-container {
+    margin-left: 30px;
+    border-left: 3px solid #cccccc;
+    padding-left: 15px;
+}
+
+.reply {
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.reply-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.reply-author {
+    color: #333333;
+    font-weight: bold;
+}
+
+/* No posts message */
+.no-posts {
+    text-align: center;
+    padding: 40px;
+    color: #666666;
+    font-style: italic;
+}
+
+.no-posts img {
+    display: block;
+    margin: 0 auto 15px auto;
+}
+
+/* Category Filter */
+.category-filter {
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    border: 2px inset #c0c0c0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.category-filter label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.category-filter select {
+    padding: 5px 10px;
+    font-family: 'Comic Neue', cursive;
+}
+
+/* Back link */
+.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 15px;
+    background-color: #e0e0e0;
+    border: 2px outset #cccccc;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    background-color: #cccccc;
+    color: #000000;
+}
+
+/* Responsive-ish (but still retro) */
+@media (max-width: 800px) {
+    .sidebar-left,
+    .sidebar-right {
+        display: none;
+    }
+    
+    .main-layout {
+        display: block;
+    }
+    
+    .main-content {
+        display: block;
+        width: 100%;
+    }
+    
+    .rainbow-text {
+        font-size: 28px;
+    }
+}
+
+/* Scrollbar styling for that extra retro feel */
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 1px solid #808080;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #dfdfdf, #a0a0a0);
+    border: 2px outset #c0c0c0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #a0a0a0, #808080);
+}
+
+/* Selection colors */
+::selection {
+    background-color: #000080;
+    color: #ffffff;
+}
