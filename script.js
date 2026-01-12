@@ -154,104 +154,114 @@ updateWeather();
 setInterval(updateWeather, 15 * 60 * 1000);
 
 // ==========================================
-// Forum Functionality
+// Forum Functionality - JSON-based
 // ==========================================
 
-// Sample posts data (in a real app, this would come from a backend)
-const defaultPosts = [
-    {
-        id: 1,
-        category: 'general',
-        title: 'First time visiting Shenzhen - any tips?',
-        content: 'Hey everyone! I\'m planning my first trip to Shenzhen next month. I\'m a hardware startup founder looking to connect with manufacturers. Any tips for a first-timer? Where should I stay? What should I bring?',
-        author: 'Anonymous Founder',
-        date: '2025-12-15',
-        replies: [
-            {
-                author: 'SZ Veteran',
-                date: '2025-12-15',
-                content: 'Welcome! My biggest tip: set up WeChat and Alipay BEFORE you arrive. You literally can\'t do anything without them. Also, download a VPN!'
-            },
-            {
-                author: 'Hardware Hacker',
-                date: '2025-12-16',
-                content: 'Stay near Huaqiangbei for your first trip. The energy there is INSANE. You\'ll find components you didn\'t even know existed!'
-            }
-        ]
-    },
-    {
-        id: 2,
-        category: 'housing',
-        title: 'Best areas for short-term housing?',
-        content: 'Looking to rent an apartment for 2-3 months while I work with some factories. Budget is around 5000-7000 RMB. Shekou or Nanshan? Pros and cons?',
-        author: 'Digital Nomad',
-        date: '2025-12-14',
-        replies: [
-            {
-                author: 'Shekou Resident',
-                date: '2025-12-14',
-                content: 'Shekou is more expat-friendly with lots of Western restaurants and bars. But Nanshan puts you closer to the tech companies and Huaqiangbei. Depends on your priorities!'
-            }
-        ]
-    },
-    {
-        id: 3,
-        category: 'hardware',
-        title: 'PCB manufacturer recommendations?',
-        content: 'I need to get some prototype PCBs made quickly. Looking for a manufacturer that can do 4-layer boards with quick turnaround. Any recommendations besides JLCPCB?',
-        author: 'PCB Newbie',
-        date: '2025-12-13',
-        replies: [
-            {
-                author: 'Proto Master',
-                date: '2025-12-13',
-                content: 'Check out PCBWay - they\'re super responsive and their quality is great. For really fast turnaround, some vendors at HQB can do same-day if you visit in person!'
-            },
-            {
-                author: 'Factory Finder',
-                date: '2025-12-14',
-                content: 'Seeed Studio\'s Fusion service is excellent for prototypes. Great English support too.'
-            }
-        ]
-    },
-    {
-        id: 4,
-        category: 'communities',
-        title: 'WeChat groups for hardware founders?',
-        content: 'Looking to join some active WeChat groups for hardware founders in Shenzhen. Anyone know of good communities?',
-        author: 'Community Seeker',
-        date: '2025-12-12',
-        replies: []
-    },
-    {
-        id: 5,
-        category: 'hardware',
-        title: 'Navigating Huaqiangbei - survival guide?',
-        content: 'I\'ve heard Huaqiangbei is overwhelming for first-timers. Which buildings should I visit first? Any tips for negotiating prices? I need microcontrollers, sensors, and display modules.',
-        author: 'Arduino Lover',
-        date: '2025-12-11',
-        replies: [
-            {
-                author: 'HQB Regular',
-                date: '2025-12-11',
-                content: 'Start at SEG Plaza for basic components. For displays, go to Yuanwang. ALWAYS negotiate - start at 50% of asking price and meet in the middle. Cash or WeChat Pay only!'
-            }
-        ]
-    }
-];
+// Global variable to store forum data
+let forumData = {
+    posts: [],
+    lastUpdated: null
+};
 
-// Initialize posts from localStorage or use defaults
-function getPosts() {
-    const stored = localStorage.getItem('forumPosts');
-    if (stored) {
-        return JSON.parse(stored);
+// Load posts from JSON file (source of truth)
+async function loadForumData() {
+    try {
+        const response = await fetch('forum-data.json');
+        if (!response.ok) {
+            throw new Error('Failed to load forum data');
+        }
+        const data = await response.json();
+        forumData.posts = data.posts || [];
+        forumData.lastUpdated = new Date().toISOString();
+        
+        // Merge with user-submitted posts from localStorage
+        mergeUserPosts();
+        
+        return forumData.posts;
+    } catch (error) {
+        console.log('Error loading forum-data.json:', error);
+        // Fallback to localStorage or empty array
+        const stored = localStorage.getItem('forumPosts');
+        if (stored) {
+            forumData.posts = JSON.parse(stored);
+            return forumData.posts;
+        }
+        forumData.posts = [];
+        return [];
     }
-    localStorage.setItem('forumPosts', JSON.stringify(defaultPosts));
-    return defaultPosts;
 }
 
-function savePosts(posts) {
-    localStorage.setItem('forumPosts', JSON.stringify(posts));
+// Merge user-submitted posts from localStorage with JSON data
+function mergeUserPosts() {
+    const userPosts = localStorage.getItem('userSubmittedPosts');
+    if (!userPosts) return;
+    
+    try {
+        const userPostsArray = JSON.parse(userPosts);
+        // Add user posts that aren't already in the main data
+        userPostsArray.forEach(userPost => {
+            const exists = forumData.posts.some(p => p.id === userPost.id);
+            if (!exists) {
+                forumData.posts.unshift(userPost); // Add to beginning
+            }
+        });
+    } catch (error) {
+        console.log('Error merging user posts:', error);
+    }
+}
+
+// Get all posts (from JSON + user submissions)
+function getPosts() {
+    return forumData.posts;
+}
+
+// Save user-submitted posts to localStorage (they'll be merged on next load)
+function saveUserPost(post) {
+    let userPosts = [];
+    const stored = localStorage.getItem('userSubmittedPosts');
+    if (stored) {
+        try {
+            userPosts = JSON.parse(stored);
+        } catch (e) {
+            userPosts = [];
+        }
+    }
+    userPosts.unshift(post);
+    // Keep only last 50 user posts to avoid localStorage bloat
+    if (userPosts.length > 50) {
+        userPosts = userPosts.slice(0, 50);
+    }
+    localStorage.setItem('userSubmittedPosts', JSON.stringify(userPosts));
+    
+    // Also add to current forumData for immediate display
+    forumData.posts.unshift(post);
+}
+
+// Save user reply to localStorage
+function saveUserReply(postId, reply) {
+    const post = forumData.posts.find(p => p.id === postId);
+    if (post) {
+        if (!post.replies) {
+            post.replies = [];
+        }
+        post.replies.push(reply);
+        
+        // Update user posts in localStorage
+        const userPosts = JSON.parse(localStorage.getItem('userSubmittedPosts') || '[]');
+        const userPost = userPosts.find(p => p.id === postId);
+        if (userPost) {
+            if (!userPost.replies) {
+                userPost.replies = [];
+            }
+            userPost.replies.push(reply);
+            localStorage.setItem('userSubmittedPosts', JSON.stringify(userPosts));
+        } else {
+            // If replying to a JSON post, create a user post entry
+            const newUserPost = { ...post, replies: [...(post.replies || [])] };
+            userPosts.push(newUserPost);
+            localStorage.setItem('userSubmittedPosts', JSON.stringify(userPosts));
+        }
+    }
 }
 
 // Render posts
@@ -379,7 +389,6 @@ function submitPost(event) {
         author = 'Anonymous';
     }
     
-    const posts = getPosts();
     const newPost = {
         id: Date.now(),
         category: category,
@@ -390,8 +399,8 @@ function submitPost(event) {
         replies: []
     };
     
-    posts.unshift(newPost);
-    savePosts(posts);
+    // Save to localStorage (will be merged with JSON data)
+    saveUserPost(newPost);
     
     // Clear form
     document.getElementById('post-title').value = '';
@@ -399,10 +408,15 @@ function submitPost(event) {
     document.getElementById('post-author').value = '';
     
     // Show success message
-    alert('🎉 Your question has been posted! Thank you for contributing!');
+    alert('🎉 Your question has been posted! Thank you for contributing!\n\nNote: Your post is saved locally. To make it visible to everyone, it needs to be added to forum-data.json');
     
     // Re-render posts
     renderPosts(document.getElementById('category-filter')?.value || 'all');
+    
+    // Update stats
+    if (typeof updateForumStats === 'function') {
+        updateForumStats();
+    }
 }
 
 // Submit reply
@@ -421,22 +435,26 @@ function submitReply(event, postId) {
         author = 'Anonymous Helper';
     }
     
-    const posts = getPosts();
-    const post = posts.find(p => p.id === postId);
+    const reply = {
+        author: author,
+        date: new Date().toISOString().split('T')[0],
+        content: content
+    };
     
-    if (post) {
-        post.replies.push({
-            author: author,
-            date: new Date().toISOString().split('T')[0],
-            content: content
-        });
-        
-        savePosts(posts);
-        
-        // Re-render posts
-        renderPosts(document.getElementById('category-filter')?.value || 'all');
-        
-        alert('💬 Reply posted! Thanks for helping out!');
+    // Save reply to localStorage
+    saveUserReply(postId, reply);
+    
+    // Hide reply form
+    hideReplyForm(postId);
+    
+    // Re-render posts
+    renderPosts(document.getElementById('category-filter')?.value || 'all');
+    
+    alert('💬 Reply posted! Thanks for helping out!\n\nNote: Your reply is saved locally. To make it visible to everyone, it needs to be added to forum-data.json');
+    
+    // Update stats
+    if (typeof updateForumStats === 'function') {
+        updateForumStats();
     }
 }
 
@@ -447,9 +465,11 @@ function filterPosts() {
 }
 
 // Initialize forum on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     // Check if we're on the community page
     if (document.getElementById('posts-list')) {
+        // Load forum data from JSON file
+        await loadForumData();
         renderPosts();
     }
     
@@ -458,7 +478,80 @@ document.addEventListener('DOMContentLoaded', function() {
     if (postForm) {
         postForm.addEventListener('submit', submitPost);
     }
+    
+    // Initialize email subscription modal
+    initEmailModal();
 });
+
+// ==========================================
+// Email Subscription Modal
+// ==========================================
+
+function initEmailModal() {
+    // Check if user has already subscribed
+    const hasSubscribed = localStorage.getItem('chinafornoobs_subscribed');
+    
+    if (!hasSubscribed) {
+        // Show modal after 3 seconds
+        setTimeout(() => {
+            showEmailModal();
+        }, 3000);
+    }
+}
+
+function showEmailModal() {
+    const modal = document.getElementById('email-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.classList.add('modal-open');
+        
+        // Focus on email input
+        setTimeout(() => {
+            const emailInput = document.getElementById('subscriber-email');
+            if (emailInput) {
+                emailInput.focus();
+            }
+        }, 100);
+    }
+}
+
+function hideEmailModal() {
+    const modal = document.getElementById('email-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+}
+
+function handleEmailSubmit(event) {
+    event.preventDefault();
+    
+    const emailInput = document.getElementById('subscriber-email');
+    const email = emailInput.value.trim();
+    
+    if (!email || !isValidEmail(email)) {
+        alert('⚠️ Please enter a valid email address!');
+        emailInput.focus();
+        return;
+    }
+    
+    // Store subscription status
+    localStorage.setItem('chinafornoobs_subscribed', 'true');
+    localStorage.setItem('chinafornoobs_email', email);
+    localStorage.setItem('chinafornoobs_subscribed_date', new Date().toISOString());
+    
+    // Here you would typically send the email to your backend/email service
+    // For now, we'll just store it locally
+    console.log('New subscriber:', email);
+    
+    // Hide modal immediately
+    hideEmailModal();
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
 // ==========================================
 // Fun Extras

@@ -1,0 +1,83 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "category": "general",
+      "title": "First time visiting Shenzhen - any tips?",
+      "content": "Hey everyone! I'm planning my first trip to Shenzhen next month. I'm a hardware startup founder looking to connect with manufacturers. Any tips for a first-timer? Where should I stay? What should I bring?",
+      "author": "Anonymous Founder",
+      "date": "2025-12-15",
+      "replies": [
+        {
+          "author": "SZ Veteran",
+          "date": "2025-12-15",
+          "content": "Welcome! My biggest tip: set up WeChat and Alipay BEFORE you arrive. You literally can't do anything without them. Also, download a VPN!"
+        },
+        {
+          "author": "Hardware Hacker",
+          "date": "2025-12-16",
+          "content": "Stay near Huaqiangbei for your first trip. The energy there is INSANE. You'll find components you didn't even know existed!"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "housing",
+      "title": "Best areas for short-term housing?",
+      "content": "Looking to rent an apartment for 2-3 months while I work with some factories. Budget is around 5000-7000 RMB. Shekou or Nanshan? Pros and cons?",
+      "author": "Digital Nomad",
+      "date": "2025-12-14",
+      "replies": [
+        {
+          "author": "Shekou Resident",
+          "date": "2025-12-14",
+          "content": "Shekou is more expat-friendly with lots of Western restaurants and bars. But Nanshan puts you closer to the tech companies and Huaqiangbei. Depends on your priorities!"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "hardware",
+      "title": "PCB manufacturer recommendations?",
+      "content": "I need to get some prototype PCBs made quickly. Looking for a manufacturer that can do 4-layer boards with quick turnaround. Any recommendations besides JLCPCB?",
+      "author": "PCB Newbie",
+      "date": "2025-12-13",
+      "replies": [
+        {
+          "author": "Proto Master",
+          "date": "2025-12-13",
+          "content": "Check out PCBWay - they're super responsive and their quality is great. For really fast turnaround, some vendors at HQB can do same-day if you visit in person!"
+        },
+        {
+          "author": "Factory Finder",
+          "date": "2025-12-14",
+          "content": "Seeed Studio's Fusion service is excellent for prototypes. Great English support too."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "category": "communities",
+      "title": "WeChat groups for hardware founders?",
+      "content": "Looking to join some active WeChat groups for hardware founders in Shenzhen. Anyone know of good communities?",
+      "author": "Community Seeker",
+      "date": "2025-12-12",
+      "replies": []
+    },
+    {
+      "id": 5,
+      "category": "hardware",
+      "title": "Navigating Huaqiangbei - survival guide?",
+      "content": "I've heard Huaqiangbei is overwhelming for first-timers. Which buildings should I visit first? Any tips for negotiating prices? I need microcontrollers, sensors, and display modules.",
+      "author": "Arduino Lover",
+      "date": "2025-12-11",
+      "replies": [
+        {
+          "author": "HQB Regular",
+          "date": "2025-12-11",
+          "content": "Start at SEG Plaza for basic components. For displays, go to Yuanwang. ALWAYS negotiate - start at 50% of asking price and meet in the middle. Cash or WeChat Pay only!"
+        }
+      ]
+    }
+  ]
+}
