@@ -472,86 +472,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         await loadForumData();
         renderPosts();
     }
-    
+
     // Add form submit handler if form exists
     const postForm = document.getElementById('new-post-form');
     if (postForm) {
         postForm.addEventListener('submit', submitPost);
     }
-    
-    // Initialize email subscription modal
-    initEmailModal();
 });
-
-// ==========================================
-// Email Subscription Modal
-// ==========================================
-
-function initEmailModal() {
-    // Check if user has already subscribed
-    const hasSubscribed = localStorage.getItem('chinafornoobs_subscribed');
-    
-    if (!hasSubscribed) {
-        // Show modal after 3 seconds
-        setTimeout(() => {
-            showEmailModal();
-        }, 3000);
-    }
-}
-
-function showEmailModal() {
-    const modal = document.getElementById('email-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.classList.add('modal-open');
-        
-        // Focus on email input
-        setTimeout(() => {
-            const emailInput = document.getElementById('subscriber-email');
-            if (emailInput) {
-                emailInput.focus();
-            }
-        }, 100);
-    }
-}
-
-function hideEmailModal() {
-    const modal = document.getElementById('email-modal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-    }
-}
-
-function handleEmailSubmit(event) {
-    event.preventDefault();
-    
-    const emailInput = document.getElementById('subscriber-email');
-    const email = emailInput.value.trim();
-    
-    if (!email || !isValidEmail(email)) {
-        alert('⚠️ Please enter a valid email address!');
-        emailInput.focus();
-        return;
-    }
-    
-    // Store subscription status
-    localStorage.setItem('chinafornoobs_subscribed', 'true');
-    localStorage.setItem('chinafornoobs_email', email);
-    localStorage.setItem('chinafornoobs_subscribed_date', new Date().toISOString());
-    
-    // Here you would typically send the email to your backend/email service
-    // For now, we'll just store it locally
-    console.log('New subscriber:', email);
-    
-    // Hide modal immediately
-    hideEmailModal();
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
 
 // ==========================================
 // Fun Extras
